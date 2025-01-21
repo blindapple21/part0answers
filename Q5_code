@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server-->>browser: HTML document for SPA
+    deactivate server
+    Note right of browser: The browser loads the initial SPA HTML document.
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the CSS file for SPA styling
+    deactivate server
+    Note right of browser: The browser applies the necessary CSS to style the app.
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: the JavaScript file for SPA functionality
+    deactivate server
+    Note right of browser: The browser loads the JavaScript that enables SPA functionality.
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    deactivate server
+    Note right of browser: The browser fetches the JSON data (list of notes) using JavaScript.
+
+    browser->>browser: JavaScript dynamically updates the page with the notes
+    Note right of browser: The page is dynamically updated without a full reload, using JavaScript.
