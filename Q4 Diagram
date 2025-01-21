@@ -1,0 +1,25 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>browser: User types note into text field
+    Note right of browser: The user enters the content of the new note in the text field.
+
+    browser->>browser: User clicks "Save" button
+    Note right of browser: The browser prepares the new note data to send to the server.
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/notes
+    Note right of browser: The browser sends the new note data as a POST request to the server.
+    activate server
+
+    server-->>browser: Confirmation response (e.g., "Note saved successfully")
+    deactivate server
+    Note right of browser: The server saves the note and responds with a success message.
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    Note right of browser: The browser requests the updated list of notes to display the new note.
+    activate server
+
+    server-->>browser: Updated HTML document with all notes including the new one
+    deactivate server
+    Note right of browser: The browser re-renders the page with the new note included.
